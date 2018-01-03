@@ -10,16 +10,22 @@ using Identity_CodeAlong.Models;
 
 namespace Identity_CodeAlong.Controllers
 {
+    //[Authorize]
     public class GymClassesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
+        //[AllowAnonymous]                                                                     //added allow anonymous to see the list for visitors
         // GET: GymClasses
         public ActionResult Index()
         {
             return View(db.GymClasses.ToList());
         }
 
+    
+        [Authorize]
+        
         // GET: GymClasses/Details/5
         public ActionResult Details(int? id)
         {
@@ -34,7 +40,7 @@ namespace Identity_CodeAlong.Controllers
             }
             return View(gymClass);
         }
-
+        [Authorize]
         // GET: GymClasses/Create
         public ActionResult Create()
         {
@@ -58,6 +64,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
+        [Authorize]
         // GET: GymClasses/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -89,6 +96,8 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
+        [Authorize]
+
         // GET: GymClasses/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -115,7 +124,7 @@ namespace Identity_CodeAlong.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [Authorize]
         public ActionResult BookingToggle(int id)
         {
 
