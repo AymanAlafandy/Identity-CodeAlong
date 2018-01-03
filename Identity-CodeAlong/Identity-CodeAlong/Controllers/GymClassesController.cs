@@ -20,6 +20,7 @@ namespace Identity_CodeAlong.Controllers
             return View(db.GymClasses.ToList());
         }
 
+        [Authorize]
         // GET: GymClasses/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,6 +36,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
+        [Authorize]
         // GET: GymClasses/Create
         public ActionResult Create()
         {
@@ -44,6 +46,7 @@ namespace Identity_CodeAlong.Controllers
         // POST: GymClasses/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,StartTime,Duration,Description")] GymClass gymClass)
@@ -58,6 +61,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
+        [Authorize]
         // GET: GymClasses/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -76,6 +80,7 @@ namespace Identity_CodeAlong.Controllers
         // POST: GymClasses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,StartTime,Duration,Description")] GymClass gymClass)
@@ -89,6 +94,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
+        [Authorize]
         // GET: GymClasses/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -104,6 +110,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
+        [Authorize]
         // POST: GymClasses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -115,6 +122,7 @@ namespace Identity_CodeAlong.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public ActionResult BookingToggle (int id)
         {
             GymClass currentClass = db.GymClasses.FirstOrDefault(x => x.Id == id);
@@ -132,7 +140,7 @@ namespace Identity_CodeAlong.Controllers
         }
 
 
-
+     
         protected override void Dispose(bool disposing)
         {
             if (disposing)
