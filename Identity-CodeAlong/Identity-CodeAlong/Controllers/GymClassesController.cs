@@ -36,14 +36,14 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // GET: GymClasses/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // POST: GymClasses/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -61,7 +61,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // GET: GymClasses/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -77,7 +77,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // POST: GymClasses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -94,7 +94,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // GET: GymClasses/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -110,7 +110,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // POST: GymClasses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
