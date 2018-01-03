@@ -23,7 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th></th>
+        <th>
+            @*@Html.DisplayNameFor(model)*@
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -43,7 +45,8 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
+            @Html.ActionLink("Attend","BookingToggle",new { id = item.Id })                                                                     @*Added Here(pt 2 from assignment)*@
         </td>
     </tr>
 }

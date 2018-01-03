@@ -41,6 +41,13 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AttendingMembers)
+        </dt>                                                                                                                              @*added pt-3 from assignemt*@
+        @foreach (var AttendingMember in Model.AttendingMembers)
+        {
+            <dd>@AttendingMember.Email</dd>
+        }
 
     </dl>
 </div>

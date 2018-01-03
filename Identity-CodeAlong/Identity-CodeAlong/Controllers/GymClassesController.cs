@@ -115,6 +115,35 @@ namespace Identity_CodeAlong.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult BookingToggle(int id)
+        {
+
+            //GymClass CurrentClass = db.GymClasses.Where(x => x.Id == id).FirstOrDefault();                                                                        //we should not write like dis,firstor default matches the data or it will return null otherwise the program will crashso we ned to give as below
+            //ApplicationUser CurrentUser = db.Users.Where(g => g.UserName == User.Identity.Name).FirstOrDefault();
+
+            GymClass CurrentClass = db.GymClasses.FirstOrDefault(x => x.Id == id);
+            ApplicationUser CurrentUser = db.Users.FirstOrDefault(x => x.UserName== User.Identity.Name);                    //firstordefault will always return something,but if we use first wont do like dis 
+
+
+            if (CurrentClass.AttendingMembers.Contains(CurrentUser))
+            {
+                CurrentClass.AttendingMembers.Remove(CurrentUser);
+                db.SaveChanges();
+            }
+            else
+            {
+                CurrentClass.AttendingMembers.Add(CurrentUser);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+
+        }
+
+
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

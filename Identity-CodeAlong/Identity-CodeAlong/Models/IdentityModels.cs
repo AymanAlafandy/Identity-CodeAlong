@@ -21,7 +21,7 @@ namespace Identity_CodeAlong.Models
         public virtual ICollection<GymClass> AttendedClasses { get; set; }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>                           
     {
         
 
