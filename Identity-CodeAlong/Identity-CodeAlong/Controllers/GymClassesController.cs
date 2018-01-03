@@ -36,6 +36,7 @@ namespace Identity_CodeAlong.Controllers
         }
 
         // GET: GymClasses/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +47,7 @@ namespace Identity_CodeAlong.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public ActionResult Create([Bind(Include = "Id,Name,StartTime,Duration,Description")] GymClass gymClass)
         {
             if (ModelState.IsValid)
@@ -59,6 +61,7 @@ namespace Identity_CodeAlong.Controllers
         }
 
         // GET: GymClasses/Edit/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +81,7 @@ namespace Identity_CodeAlong.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public ActionResult Edit([Bind(Include = "Id,Name,StartTime,Duration,Description")] GymClass gymClass)
         {
             if (ModelState.IsValid)
@@ -90,6 +94,7 @@ namespace Identity_CodeAlong.Controllers
         }
 
         // GET: GymClasses/Delete/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +112,7 @@ namespace Identity_CodeAlong.Controllers
         // POST: GymClasses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             GymClass gymClass = db.GymClasses.Find(id);
@@ -115,6 +121,7 @@ namespace Identity_CodeAlong.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public ActionResult BookingToggle(int id)
         {
             GymClass currentClass = db.GymClasses.FirstOrDefault(x => x.Id == id);

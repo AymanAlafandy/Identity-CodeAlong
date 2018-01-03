@@ -1,5 +1,8 @@
 namespace Identity_CodeAlong.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +29,22 @@ namespace Identity_CodeAlong.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.Roles.AddOrUpdate(x => x.Name, new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("Admin"));
+            UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
+
+            ApplicationUser user = new ApplicationUser() { UserName="admin@gymbooking.se", Email= "admin@gymbooking.se" };
+
+            //user manager will set the password for the admin
+
+            var result = userManager.Create(user, "password");
+
+            ApplicationUser admin = userManager.FindByName("admin@gymbooking.se");
+
+            userManager.AddToRole(admin.Id, "Admin");
+
+            context.SaveChanges(); 
         }
     }
 }
