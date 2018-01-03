@@ -26,7 +26,7 @@ namespace Identity_CodeAlong.Models
 
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DBGym", throwIfV1Schema: false)
         {
         }
 

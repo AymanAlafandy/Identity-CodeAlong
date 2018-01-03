@@ -15,6 +15,6 @@ namespace Identity_CodeAlong.Models
         public DateTime EndTime { get { return StartTime + Duration; } }
         public string Description { get; set; }
 
-        public virtual ICollection<ApplicationUser> AttendingUser{ get; set; }
+        public virtual ICollection<ApplicationUser> AttendingMembers{ get; set; }
     }
 }
