@@ -45,9 +45,13 @@
         @if(User.Identity.IsAuthenticated==true)
         {                                                                         @*noneed to add true here but for clarity added*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) <span>| </span>
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) <span>|</span> 
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) <span>|</span> 
+            @if (User.IsInRole("Admin"))                                                                                                        //added here 
+            {
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>| </span>
+        
     @Html.ActionLink("Delete", "Delete", new { id = item.Id }) <span>|</span>
+            }
     @Html.ActionLink("Attend", "BookingToggle", new { id = item.Id })                                                                     @*Added Here(pt 2 from assignment)*@
 </td>
         }
