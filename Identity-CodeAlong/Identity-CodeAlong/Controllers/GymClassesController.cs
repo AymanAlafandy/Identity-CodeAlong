@@ -115,6 +115,24 @@ namespace Identity_CodeAlong.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult BookingToggle (int id)
+        {
+            GymClass currentClass = db.GymClasses.FirstOrDefault(x => x.Id == id);
+            ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+
+            if (currentClass.AttendingMembers.Contains(currentUser))
+            {
+                currentClass.AttendingMembers.Remove(currentUser);
+                db.SaveChanges();
+            }
+            else { currentClass.AttendingMembers.Add(currentUser);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
