@@ -13,7 +13,7 @@ namespace Identity_CodeAlong.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201801031159114_init"; }
+            get { return "201801031345065_init"; }
         }
         
         string IMigrationMetadata.Source

@@ -34,7 +34,11 @@ namespace Identity_CodeAlong.Migrations
             UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);
             UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
 
-            ApplicationUser user = new ApplicationUser() { UserName="admin@gymbooking.se", Email= "admin@gymbooking.se" };
+            ApplicationUser user = new ApplicationUser() { UserName="admin@gymbooking.se",
+                Email = "admin@gymbooking.se",
+                FirstName ="Admin",
+                LastName ="AdminAdmin",
+                TimeOfRegistration = DateTime.Now };
 
             //user manager will set the password for the admin
 
