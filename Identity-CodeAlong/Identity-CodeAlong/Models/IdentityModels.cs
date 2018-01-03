@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace Identity_CodeAlong.Models
 {
@@ -16,10 +17,15 @@ namespace Identity_CodeAlong.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual ICollection<GymClass> AttendedClasses { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<GymClass> GymClasses { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
