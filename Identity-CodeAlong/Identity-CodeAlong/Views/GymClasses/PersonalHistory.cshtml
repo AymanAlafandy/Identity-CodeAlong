@@ -1,16 +1,12 @@
 ﻿@model IEnumerable<Identity_CodeAlong.Models.GymClassIndexModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "PersonalHistory";
 }
 
-<h2>Index</h2>
-@if (User.IsInRole("Admin"))
-{
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-}
+<h2>Personal History</h2>
+
+ 
 <table class="table">
     <tr>
         <th>
@@ -23,9 +19,11 @@
             @Html.DisplayNameFor(model => model.Duration)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -40,28 +38,13 @@
             @Html.DisplayFor(modelItem => item.Duration)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        @if (User.Identity.IsAuthenticated == true)
-        {
-            <td> 
-                @if (User.IsInRole("Admin"))
-                {
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) <span>|</span>
-                }
-              
-                    
-               
-                
-                    @Html.ActionLink(item.Attending, "BookingToggle", new { id = item.Id })
-                
 
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) <span>|</span>
-                
-            </td>
-        }
-
+ 
     </tr>
 }
 

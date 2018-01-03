@@ -82,10 +82,16 @@ namespace Identity_CodeAlong.Models
         public string ConfirmPassword { get; set; }
 
         //
+        [Required]
+        [Display(Name ="First Name")]
+        [MinLength(2)]
         public string FirstName { get; set; }
-
+        [Required]
+        [Display(Name = "Last Name")]
+        [MinLength(2)]
         public string LastName { get; set; }
 
+        [Display(Name ="Full Name")]
         public string FullName { get { return FirstName + " " + LastName; } }
 
         public DateTime TimeOfRegistration { get; set; }
