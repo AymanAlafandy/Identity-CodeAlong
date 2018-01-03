@@ -47,21 +47,21 @@ namespace Identity_CodeAlong
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            //    clientId: "GymClasses",
+            //    clientSecret: "GymClasses");
 
             //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            //   consumerKey: "GymClasses",
+            //   consumerSecret: "GymClasses");
 
             //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            //   appId: "GymClasses",
+            //   appSecret: "GymClasses");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
-            //    ClientId = "",
-            //    ClientSecret = ""
+            //    ClientId = "GymClasses",
+            //    ClientSecret = "GymClasses"
             //});
         }
     }

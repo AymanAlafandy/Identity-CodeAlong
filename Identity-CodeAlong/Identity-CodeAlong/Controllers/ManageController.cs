@@ -61,7 +61,7 @@ namespace Identity_CodeAlong.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
+                : "GymClasses";
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
@@ -190,7 +190,7 @@ namespace Identity_CodeAlong.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "Failed to verify phone");
+            ModelState.AddModelError("GymClasses", "Failed to verify phone");
             return View(model);
         }
 
@@ -283,7 +283,7 @@ namespace Identity_CodeAlong.Controllers
             ViewBag.StatusMessage =
                 message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : message == ManageMessageId.Error ? "An error has occurred."
-                : "";
+                : "GymClasses";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)
             {
@@ -349,7 +349,7 @@ namespace Identity_CodeAlong.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError("GymClasses", error);
             }
         }
 

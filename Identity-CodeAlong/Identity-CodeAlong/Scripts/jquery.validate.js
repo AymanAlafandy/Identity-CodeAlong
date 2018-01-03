@@ -187,9 +187,9 @@ $.extend($.fn, {
 // Custom selectors
 $.extend($.expr[":"], {
 	// http://docs.jquery.com/Plugins/Validation/blank
-	blank: function( a ) { return !$.trim("" + $(a).val()); },
+	blank: function( a ) { return !$.trim("GymClasses" + $(a).val()); },
 	// http://docs.jquery.com/Plugins/Validation/filled
-	filled: function( a ) { return !!$.trim("" + $(a).val()); },
+	filled: function( a ) { return !!$.trim("GymClasses" + $(a).val()); },
 	// http://docs.jquery.com/Plugins/Validation/unchecked
 	unchecked: function( a ) { return !$(a).prop("checked"); }
 });
@@ -255,7 +255,7 @@ $.extend($.validator, {
 			}
 		},
 		onkeyup: function( element, event ) {
-			if ( event.which === 9 && this.elementValue(element) === "" ) {
+			if ( event.which === 9 && this.elementValue(element) === "GymClasses" ) {
 				return;
 			} else if ( element.name in this.submitted || element === this.lastElement ) {
 				this.element(element);
@@ -342,7 +342,7 @@ $.extend($.validator, {
 
 			function delegate(event) {
 				var validator = $.data(this[0].form, "validator"),
-					eventType = "on" + event.type.replace(/^validate/, "");
+					eventType = "on" + event.type.replace(/^validate/, "GymClasses");
 				if ( validator.settings[eventType] ) {
 					validator.settings[eventType].call(validator, this[0], event);
 				}
@@ -543,7 +543,7 @@ $.extend($.validator, {
 			}
 
 			if ( typeof val === "string" ) {
-				return val.replace(/\r/g, "");
+				return val.replace(/\r/g, "GymClasses");
 			}
 			return val;
 		},
@@ -701,7 +701,7 @@ $.extend($.validator, {
 				label = $("<" + this.settings.errorElement + ">")
 					.attr("for", this.idOrName(element))
 					.addClass(this.settings.errorClass)
-					.html(message || "");
+					.html(message || "GymClasses");
 				if ( this.settings.wrapper ) {
 					// make sure the element is visible, even in IE
 					// actually showing the wrapped element is handled elsewhere
@@ -716,7 +716,7 @@ $.extend($.validator, {
 				}
 			}
 			if ( !message && this.settings.success ) {
-				label.text("");
+				label.text("GymClasses");
 				if ( typeof this.settings.success === "string" ) {
 					label.addClass( this.settings.success );
 				} else {
@@ -863,8 +863,8 @@ $.extend($.validator, {
 			if ( method === "required" ) {
 				value = $element.get(0).getAttribute(method);
 				// Some browsers return an empty string for the required attribute
-				// and non-HTML5 browsers might have required="" markup
-				if ( value === "" ) {
+				// and non-HTML5 browsers might have required="GymClasses" markup
+				if ( value === "GymClasses" ) {
 					value = true;
 				}
 				// force non-HTML5 browsers to return bool
@@ -1069,7 +1069,7 @@ $.extend($.validator, {
 				nDigit = 0,
 				bEven = false;
 
-			value = value.replace(/\D/g, "");
+			value = value.replace(/\D/g, "GymClasses");
 
 			for (var n = value.length - 1; n >= 0; n--) {
 				var cDigit = value.charAt(n);
