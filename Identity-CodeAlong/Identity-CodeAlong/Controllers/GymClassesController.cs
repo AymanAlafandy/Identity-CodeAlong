@@ -20,7 +20,7 @@ namespace Identity_CodeAlong.Controllers
             return View(db.GymClasses.ToList());
         }
 
-        [Authorize]
+        [Authorize]        
         // GET: GymClasses/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,7 +36,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // GET: GymClasses/Create
         public ActionResult Create()
         {
@@ -46,7 +46,7 @@ namespace Identity_CodeAlong.Controllers
         // POST: GymClasses/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,StartTime,Duration,Description")] GymClass gymClass)
@@ -61,7 +61,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // GET: GymClasses/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -80,7 +80,7 @@ namespace Identity_CodeAlong.Controllers
         // POST: GymClasses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,StartTime,Duration,Description")] GymClass gymClass)
@@ -94,7 +94,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // GET: GymClasses/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -110,7 +110,7 @@ namespace Identity_CodeAlong.Controllers
             return View(gymClass);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         // POST: GymClasses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
