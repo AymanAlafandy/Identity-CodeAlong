@@ -36,7 +36,7 @@ namespace Identity_CodeAlong.Migrations
             UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);                      //created instances for temp storage
             UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
 
-            ApplicationUser user= new ApplicationUser() { UserName = "admin@GymBooking.se", Email = "admin@GymBooking.se" };
+            ApplicationUser user= new ApplicationUser() { UserName = "admin@GymBooking.se", Email = "admin@GymBooking.se" ,FirstName="Admin",LastName="Adminson",TimeOfRegistration=DateTime.Now};
 
             var result = userManager.Create(user, "password");
 
@@ -44,13 +44,6 @@ namespace Identity_CodeAlong.Migrations
 
             userManager.AddToRole(admin.Id, "Admin");
             context.SaveChanges();
-
-
-
-
-
-
-
 
         }
     }

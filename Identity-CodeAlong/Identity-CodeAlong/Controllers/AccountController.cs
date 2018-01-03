@@ -147,12 +147,12 @@ namespace Identity_CodeAlong.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)                                 //here we need to be very careful with asynchronous methods
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,FirstName=model.FirstName,LastName=model.LastName,TimeOfRegistration=DateTime.Now };                       //added first name,last name,timeof registartion
+                var result = await UserManager.CreateAsync(user, model.Password);                                                                                                                                                                                    //added datetime.now to update current system time
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

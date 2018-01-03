@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Identity_CodeAlong.Models
 {
@@ -68,6 +70,24 @@ namespace Identity_CodeAlong.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "FullName")]                                                                                                      //added here
+        public string FullName { get { return FirstName + " " + LastName; } }
+
+        [Required]
+        [Display(Name = "RegistrationTime")]
+        //[Column(TypeName = "datetime2")]                                                                                              //    var result = userManager.Create(user, "password"); this will automatically set as datetime2 in db                          
+        public DateTime TimeOfRegistration { get; set; }
+
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
