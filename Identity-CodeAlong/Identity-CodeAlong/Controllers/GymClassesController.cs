@@ -20,11 +20,73 @@ namespace Identity_CodeAlong.Controllers
         // GET: GymClasses
         public ActionResult Index()
         {
-            return View(db.GymClasses.ToList());
+            List<GymClassIndexModel> model = new List<GymClassIndexModel>();
+            foreach (GymClass gc in db.GymClasses.Where(x => x.StartTime >= DateTime.Now).ToList())
+            {
+                GymClassIndexModel index = new GymClassIndexModel();
+                index.Id = gc.Id;
+                index.Name = gc.Name;
+                index.StartTime = gc.StartTime;
+                index.Duration = gc.Duration;
+                index.Description = gc.Description;
+                if (gc.AttendingMembers.FirstOrDefault(x =>
+                 x.UserName == User.Identity.Name) == null)
+                {
+                    index.Attending = "Attend";
+                }
+                else
+                {
+                    index.Attending = "Cancel";
+                }
+                model.Add(index);
+            }
+            return View(model);
         }
 
-    
-     
+        [Authorize]
+        public ActionResult BookedClasses()
+        {
+            List<GymClassIndexModel> model = new List<GymClassIndexModel>();
+            foreach (GymClass gc in db.GymClasses.Where(x =>
+            x.StartTime >= DateTime.Now &&
+            x.AttendingMembers.FirstOrDefault(c =>
+            c.UserName == User.Identity.Name) != null).ToList())
+            {
+                GymClassIndexModel index = new GymClassIndexModel();
+                index.Id = gc.Id;
+                index.Name = gc.Name;
+                index.StartTime = gc.StartTime;
+                index.Duration = gc.Duration;
+                index.Description = gc.Description;
+                index.Attending = "Cancel";
+
+                model.Add(index);
+            }
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult PersonalHistory()
+        {
+            List<GymClassIndexModel> model = new List<GymClassIndexModel>();
+            foreach (GymClass gc in db.GymClasses.Where(x =>
+            x.StartTime < DateTime.Now &&
+            x.AttendingMembers.FirstOrDefault(c =>
+            c.UserName == User.Identity.Name) != null).ToList())
+            {
+                GymClassIndexModel index = new GymClassIndexModel();
+                index.Id = gc.Id;
+                index.Name = gc.Name;
+                index.StartTime = gc.StartTime;
+                index.Duration = gc.Duration;
+                index.Description = gc.Description;
+
+                model.Add(index);
+            }
+            return View(model);
+        }
+
+
         // GET: GymClasses/Details/5
         public ActionResult Details(int? id)
         {

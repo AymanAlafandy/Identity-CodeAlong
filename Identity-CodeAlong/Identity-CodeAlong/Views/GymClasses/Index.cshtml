@@ -21,41 +21,72 @@
             @Html.DisplayNameFor(model => model.Duration)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.EndTime)
         </th>
         <th>
-            @*@Html.DisplayNameFor(model)*@
+            @Html.DisplayNameFor(model => model.Description)
         </th>
+        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Duration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        @if(User.Identity.IsAuthenticated==true)
-        {                                                                         @*noneed to add true here but for clarity added*@
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) <span>|</span> 
-            @if (User.IsInRole("Admin"))                                                                                                        //added here 
-            {
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>| </span>
-        
-    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) <span>|</span>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+
+            @if (User.Identity.IsAuthenticated == true)
+                {
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) <span>|</span>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) <span>|</span>
+                    }
+
+                    @Html.ActionLink(item.Attending, "BookingToggle", new { id = item.Id })
+
+                </td>
             }
-    @Html.ActionLink("Attend", "BookingToggle", new { id = item.Id })                                                                     @*Added Here(pt 2 from assignment)*@
-</td>
-        }
-    </tr>
-}
+        </tr>
+    }
+</table>
+
+
+
+
+
+
+
+@*@if (item.AttendingMembers.FirstOrDefault(x => x.Email == User.Identity.Name) == null)
+    {*@
+
+
+@*/for attend and cancel*@                          @*Added Here(pt 2 from assignment)*@
+
+
+
+@*}
+    else
+    {
+        @Html.ActionLink("Cancel", "BookingToggle", new { id = item.Id })
+    }*@
+
+
+
 
 </table>

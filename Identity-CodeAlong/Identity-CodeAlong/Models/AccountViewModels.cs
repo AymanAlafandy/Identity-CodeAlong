@@ -73,6 +73,7 @@ namespace Identity_CodeAlong.Models
 
         [Required]
         [Display(Name = "First Name")]
+        [MinLength(2)]
         public string FirstName { get; set; }
 
         [Required]
@@ -80,10 +81,11 @@ namespace Identity_CodeAlong.Models
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "FullName")]                                                                                                      //added here
+        [Display(Name = "FullName")]
+        [MinLength(2)]                                                                                                                                                      //added here
         public string FullName { get { return FirstName + " " + LastName; } }
 
-        [Required]
+      
         [Display(Name = "RegistrationTime")]
         //[Column(TypeName = "datetime2")]                                                                                              //    var result = userManager.Create(user, "password"); this will automatically set as datetime2 in db                          
         public DateTime TimeOfRegistration { get; set; }
